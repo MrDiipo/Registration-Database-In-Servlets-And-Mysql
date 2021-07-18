@@ -29,7 +29,7 @@ public class EmployeeDAO {
 
             System.out.println(preparedStatement);
             // We execute the query or update query
-            result = preparedStatement.executeUpdate()
+            result = preparedStatement.executeUpdate();
         } catch (SQLException e){
             e.printStackTrace();
         }
