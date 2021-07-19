@@ -3,6 +3,8 @@ package Registration.servlet;
 import Registration.dao.EmployeeDAO;
 import Registration.model.Employee;
 
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -24,9 +26,12 @@ public class EmployeeServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response){
         try {
             response.getWriter().append("Served at: ").append(response.getContentType());
-        } catch (IOException e){
+            RequestDispatcher dispatcher = request.getRequestDispatcher("Registration/views/employee.jsp");
+            dispatcher.forward(request, response);
+        } catch (IOException  | ServletException e){
             e.printStackTrace();
         }
+
     }
     protected void doPost(HttpServletResponse response, HttpServletRequest request){
         String firstName = request.getParameter("firstName");
@@ -50,8 +55,9 @@ public class EmployeeServlet extends HttpServlet {
             e.printStackTrace();
         }
         try {
-            response.sendRedirect("");
-        } catch (IOException e){
+            RequestDispatcher dispatcher = request.getRequestDispatcher("Registration/views/Success.jsp");
+            dispatcher.forward(request, response);
+        } catch (IOException | ServletException e){
             e.printStackTrace();
         }
     }
